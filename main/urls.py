@@ -24,6 +24,7 @@ schema_view = get_schema_view(
 router = DefaultRouter()
 router.register('comments', CommentViewSet)
 router.register('products', ProductViewSet)
+router.register('categories', CategoryViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
