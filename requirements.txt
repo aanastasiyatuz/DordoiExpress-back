@@ -27,7 +27,7 @@ packaging==21.0
 phonenumbers==8.12.19
 Pillow==8.3.2
 prompt-toolkit==3.0.20
-psycopg2-binary==2.9.1
+psycopg2-binary==2.8.5
 PyJWT==1.7.1
 pyparsing==2.4.7
 python-decouple==3.5

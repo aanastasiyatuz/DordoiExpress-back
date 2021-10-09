@@ -5,6 +5,8 @@ from django.contrib import admin
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
+from product.views import *
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Attestation Oauth API",
@@ -19,6 +21,10 @@ schema_view = get_schema_view(
 )
 
 
+router = DefaultRouter()
+router.register('comments', CommentViewSet)
+router.register('products', ProductViewSet)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     
@@ -29,4 +35,6 @@ urlpatterns = [
 
     # jwt авторизация
     path('account/', include('account.urls')),
+
+    path('api/', include(router.urls))
 ]
