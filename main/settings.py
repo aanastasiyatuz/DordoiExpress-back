@@ -49,7 +49,9 @@ INSTALLED_APPS = [
 
     # apps
     'account',
+    'profiles',
     'product',
+    'cart',
 ]
 
 # доп настройки для jwt авторизации
@@ -170,3 +172,6 @@ SIMPLE_JWT = {
 
 # переопределение модели юзера (до первых миграций!!!!!)
 AUTH_USER_MODEL = 'account.MyUser'
+
+CART_SESSION_ID = 'cart'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

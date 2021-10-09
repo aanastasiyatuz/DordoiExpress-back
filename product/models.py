@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator
 from django.db import models
 
+<<<<<<< HEAD
 User = get_user_model()
 
 
@@ -64,3 +65,8 @@ class Comment(models.Model):
 
 	def __str__(self):
 		return self.author.username
+=======
+
+class Product(models.Model):
+    ...
+>>>>>>> dde8aab732dc301805b7c03d64fde472c649a764
