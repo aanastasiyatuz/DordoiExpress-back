@@ -10,6 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+<<<<<<< HEAD
+=======
+import os
+from decouple import config
+>>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +34,10 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+<<<<<<< HEAD
 
+=======
+>>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,11 +45,44 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+=======
+    # подключение rest
+    'rest_framework',
+    # подключение jwt авторизации
+    'rest_framework_simplejwt.token_blacklist',
+    # подключение CORS
+    'corsheaders',
+    # drf_yasg
+    'drf_yasg',
+
+    # apps
+    'account',
+    'product',
+]
+
+# доп настройки для jwt авторизации
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    # CORS Headers подключаются тут
+    'corsheaders.middleware.CorsMiddleware',
+>>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -51,6 +92,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'main.urls'
 
+<<<<<<< HEAD
+=======
+# Сайты для которых разрешен доступ при помощи CORS
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8000",
+    "http://localhost:3000",
+]
+
+>>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -89,6 +139,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+<<<<<<< HEAD
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -104,10 +155,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+=======
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
+]
+
+
+
+>>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+<<<<<<< HEAD
 
 TIME_ZONE = 'Asia/Bishkek'
 
@@ -127,3 +189,42 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+=======
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+
+
+# подключение статика и медиа
+
+# в статике хранятся файлы css и js
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# в медиа хранятся фото и видео файлы
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+REST_FRAMEWORK = {
+    # пагинаци
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'NON_FIELD_ERRORS_KEY': 'error',
+    # jwt авторизация
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+# настройка продолжительности жизни токена в jwt авторизации
+import datetime
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=120),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+}
+
+# переопределение модели юзера (до первых миграций!!!!!)
+AUTH_USER_MODEL = 'account.MyUser'
+>>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
