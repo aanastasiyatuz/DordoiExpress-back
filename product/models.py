@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator
 from django.db import models
 
-<<<<<<< HEAD
 User = get_user_model()
 
 
@@ -24,15 +23,19 @@ class Category(models.Model):
 		return self.title
 
 
+class Photo(models.Model):
+    photo = models.ImageField(upload_to='product_photos', blank=True, null=True)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='photos')
+
+
 class Product(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
-    photo = models.ImageField(upload_to='products', blank=True, null=True)
-    price = models.PositiveIntegerField()
-    amount = models.PositiveIntegerField()
-    status = models.Choices(choices=STATUS_CHOICES)
+    price = models.PositiveIntegerField(default=0)
+    amount = models.PositiveIntegerField(default=0)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -55,18 +58,14 @@ class Rating(models.Model):
 
 
 class Comment(models.Model):
-	author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
-	proudct = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
-	body = models.TextField()
-	created = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
+    photo = models.ImageField(upload_to='comment_photos', blank=True, null=True)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
 
-	class Meta:
-		ordering = ['created']
+    class Meta:
+        ordering = ['created']
 
-	def __str__(self):
-		return self.author.username
-=======
-
-class Product(models.Model):
-    ...
->>>>>>> dde8aab732dc301805b7c03d64fde472c649a764
+    def __str__(self):
+        return self.author.username

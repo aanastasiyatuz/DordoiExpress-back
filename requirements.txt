@@ -24,14 +24,7 @@ Jinja2==3.0.2
 kombu==5.1.0
 MarkupSafe==2.0.1
 packaging==21.0
-<<<<<<< HEAD
 psycopg2-binary==2.8.5
-=======
-phonenumbers==8.12.19
-Pillow==8.3.2
-prompt-toolkit==3.0.20
-psycopg2-binary==2.9.1
->>>>>>> dde8aab732dc301805b7c03d64fde472c649a764
 PyJWT==1.7.1
 pyparsing==2.4.7
 python-decouple==3.5
