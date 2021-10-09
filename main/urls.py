@@ -38,3 +38,8 @@ urlpatterns = [
 
     path('api/', include(router.urls))
 ]
+
+# sudo systemctl restart nginx
+# sudo systemctl restart gunicorn
+# sudo systemctl daemon-reload
+# sudo systemctl restart gunicorn
