@@ -22,9 +22,10 @@ class CartSerializer(serializers.ModelSerializer):
         user = request.user.profile_customer
         cart = Cart.objects.create(user=user)
         for item in items:
-            CartItem.objects.create(cart=cart,
+            cart_item = CartItem.objects.create(cart=cart,
                                     product=item['product'],
                                     amount=item['amount'])
+            cart.total_price += cart_item.get_total_price()
         return cart
 
 
@@ -32,4 +33,5 @@ class CartSerializer(serializers.ModelSerializer):
         representation = super(CartSerializer, self).to_representation(instance)
         representation['user'] = instance.user.email
         representation['products'] = CartItemSerializer(instance.cartitem.all(), many=True).data
+        representation['total_price'] = instance.total_price
         return representation

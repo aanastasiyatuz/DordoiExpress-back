@@ -1,3 +1,4 @@
+from functools import total_ordering
 from django.db import models
 from profiles.models import ProfileClient
 from product.models import Product
@@ -5,6 +6,7 @@ from product.models import Product
 
 class Cart(models.Model):
     user = models.ForeignKey(ProfileClient, on_delete=models.CASCADE, related_name='cart')
+    total_price = models.IntegerField(default=0)
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='cartitem')
