@@ -10,11 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-<<<<<<< HEAD
-=======
 import os
 from decouple import config
->>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -34,10 +31,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-<<<<<<< HEAD
-
-=======
->>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,13 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-]
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-=======
     # подключение rest
     'rest_framework',
     # подключение jwt авторизации
@@ -82,7 +68,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     # CORS Headers подключаются тут
     'corsheaders.middleware.CorsMiddleware',
->>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -92,15 +77,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'main.urls'
 
-<<<<<<< HEAD
-=======
 # Сайты для которых разрешен доступ при помощи CORS
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8000",
     "http://localhost:3000",
 ]
 
->>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -139,23 +121,6 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-<<<<<<< HEAD
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-
-=======
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
@@ -164,32 +129,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
->>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-<<<<<<< HEAD
-
-TIME_ZONE = 'Asia/Bishkek'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-=======
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
@@ -227,4 +170,3 @@ SIMPLE_JWT = {
 
 # переопределение модели юзера (до первых миграций!!!!!)
 AUTH_USER_MODEL = 'account.MyUser'
->>>>>>> 856658becd164a009deba16cb7af9cd0bd70aae8
