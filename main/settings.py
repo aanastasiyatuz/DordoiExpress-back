@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'account',
     'profiles',
     'product',
-    'cart',
+    'cart_',
+    # 'order',
 ]
 
 # доп настройки для jwt авторизации
@@ -92,6 +93,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'cart.context_processor.cart_total_amount',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
