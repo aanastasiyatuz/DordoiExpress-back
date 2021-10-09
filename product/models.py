@@ -37,6 +37,7 @@ class Product(models.Model):
     amount = models.PositiveIntegerField(default=0)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
     created = models.DateTimeField(auto_now_add=True)
+    main_photo = models.ImageField(upload_to='product_photos')
 
     class Meta:
         ordering = ['created']

@@ -17,7 +17,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.username')
-    # product = serializers.ReadOnlyField(source='product.title')
+
     class Meta:
         model = Comment
         fields = '__all__'
@@ -29,35 +29,41 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-# 	author = serializers.ReadOnlyField(source='author.username')
+    author = serializers.ReadOnlyField(source='author.username')
 # 	created = serializers.DateTimeField(format='%d/%m/%Y %H:%M:%S', read_only=True)
 
-	class Meta:
-		model = Product
-		fields = '__all__'
+    class Meta:
+        model = Product
+        fields = '__all__'
 
-# 	def to_representation(self, instance):
-# 		representation = super().to_representation(instance)
-# 		action = self.context.get('action')
-# 		representation['rating'] = get_rating(representation.get('id'), Product)
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        # representation['photos'] = PhotoSerializer(instance.photos.all(), many=True).data
+        photos = [photo for photo in instance.photos.all()]
 
-# 		if action == 'list':
-# 			representation.pop('de')
-# 			representation.pop('link')
-# 			representation['comments'] = instance.comments.count()
-# 		elif action == 'retrieve':
-# 			representation['comments'] = CommentSerializer(instance.comments.all(), many=True).data
-# 			queryset = Product.objects.exclude(id=instance.id).filter(category=instance.category)[:4]
-# 			representation['similar'] = ProductSerializer(queryset, many=True).data
 
-# 		return representation
+        action = self.context.get('action')
+        # if action == 'list':
+        #     representation['main_photo'] += PhotoSerializer(instance.photos.all(), many=True).data
+        # elif action == 'retrieve':
+        #     representation['replies'] = ReplySerializer(instance.replies.all(), many=True).data
+        return representation
 
-# 	def create(self, validated_data):
-# 		request = self.context.get('request')
-# 		Product = Product.objects.create(author=request.user, **validated_data)
-# 		user = CustomUser.objects.get(id=request.user.id)
+    def create(self, validated_data):
+        request = self.context.get('request')
+        images_data = request.FILES
+        product = Product.objects.create(author=request.user, **validated_data)
 
-# 		for follower in Product.author.profile.followers.all():
-# 			send_notification(Product.author, follower, Product)
+        for image in images_data.getlist('photos'):
+            Photo.objects.create(image=image, product=product)
+        return product
 
-# 		return Product
+    # def update(self, instance, validated_data):
+    #     request = self.context.get('request')
+    #     for key, value in validated_data.items():
+    #         setattr(instance, key, value)
+    #     images_data = request.FILES
+    #     instance.images.all().delete()
+    #     for image in images_data.getlist('images'):
+    #         CodeImage.objects.create(image=image, problem=instance)
+    #     return instance
