@@ -1,8 +1,10 @@
+from django.contrib.auth import get_user_model
 from rest_framework import viewsets
 from .models import Cart
 from .serializers import CartSerializer
 from .permissions import IsAuthorPermission, IsCustomerPermission
 
+MyUser = get_user_model()
 
 class PermissionMixin:
     def get_permissions(self):
@@ -23,7 +25,9 @@ class CartViewSet(PermissionMixin, viewsets.ModelViewSet):
     serializer_class = CartSerializer
 
     def get_queryset(self):
-        qs = self.request.user.profile_customer
-        queryset = super().get_queryset()
-        queryset = queryset.filter(user=qs)
-        return queryset
+        if isinstance(self.request.user, MyUser):
+            qs = self.request.user.profile_customer
+            queryset = super().get_queryset()
+            queryset = queryset.filter(user=qs)
+            return queryset
+        return None
