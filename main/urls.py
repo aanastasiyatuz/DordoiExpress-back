@@ -27,6 +27,7 @@ router.register('comments', CommentViewSet)
 router.register('products', ProductViewSet)
 router.register('cart', CartViewSet)
 router.register('categories', CategoryViewSet)
+router.register('ratings', RatingViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
