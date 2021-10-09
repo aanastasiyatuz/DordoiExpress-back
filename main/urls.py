@@ -4,7 +4,6 @@ from django.urls import path, include
 from django.contrib import admin
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
-from cart.views import CartViewSet
 
 from product.views import *
 
@@ -25,7 +24,6 @@ schema_view = get_schema_view(
 router = DefaultRouter()
 router.register('comments', CommentViewSet)
 router.register('products', ProductViewSet)
-router.register('cart', CartViewSet)
 router.register('categories', CategoryViewSet)
 
 urlpatterns = [
@@ -43,6 +41,9 @@ urlpatterns = [
 
     # jwt авторизация
     path('account/', include('account.urls')),
+
+    # cart
+    path('cart/', include('cart_.urls')),
 ]
 
 # sudo systemctl restart nginx
