@@ -8,7 +8,6 @@ MyUser = get_user_model()
 
 class ProfileSeller(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE, related_name='profile_seller')
-    email = models.EmailField(max_length=100, unique=True)
     bio = models.TextField(max_length=300, default='no bio...')
     avatar = models.ImageField(upload_to='avatars/', default='default-avatar.jpg')
     country = models.CharField(max_length=100, blank=True)
@@ -21,7 +20,6 @@ class ProfileSeller(models.Model):
 
 class ProfileClient(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE, related_name='profile_client')
-    email = models.EmailField(max_length=100, unique=True)
     avatar = models.ImageField(upload_to='avatars/', default='default-avatar.jpg')
     country = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, blank=True)

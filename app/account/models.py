@@ -37,7 +37,7 @@ STATUS_CHOICES = (
 
 class MyUser(AbstractUser):
     email = models.EmailField(max_length=150, unique=True)
-    username = models.CharField(max_length=155, unique=True)
+    username = models.CharField(max_length=155)
     status = models.CharField(default='client', max_length=20, choices=STATUS_CHOICES)
     is_active = models.BooleanField(default=False)
     activation_code = models.CharField(max_length=6, blank=True)

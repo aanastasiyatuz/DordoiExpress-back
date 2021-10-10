@@ -37,7 +37,12 @@ class ForgotPassword(APIView):
         return Response('Вам отправлено письмо', status=200)
 
 class ForgotPasswordComplete(APIView):
-    def post(self, request):
+    def post(self, request, activation_code):
+        user = get_object_or_404(MyUser, activation_code=activation_code)
+        user.activation_code = ''
+        user.is_active = True
+        user.save()
+
         serializer = CreateNewPasswordSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()

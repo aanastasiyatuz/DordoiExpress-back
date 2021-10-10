@@ -1,4 +1,4 @@
-from django.http.response import HttpResponse
+from rest_framework.response import Response
 from product.models import Product
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
@@ -43,7 +43,7 @@ def item_decrement(request, id):
 def cart_clear(request):
     cart = Cart(request)
     cart.clear()
-    return HttpResponse("Succesfully cleared a cart", status=200)
+    return Response("Succesfully cleared a cart", status=200)
 
 
 @login_required(login_url="/account/login")
