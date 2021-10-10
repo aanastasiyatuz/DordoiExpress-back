@@ -47,6 +47,7 @@ class ProductSerializer(serializers.ModelSerializer):
             representation['photos'] = photos
             comments = CommentSerializer(instance.comments.all(), many=True).data
             representation['comments'] = comments
+            representation.pop('main_photo')
         elif action == 'list':
             comments = CommentSerializer(instance.comments.all(), many=True).data
             if not comments:

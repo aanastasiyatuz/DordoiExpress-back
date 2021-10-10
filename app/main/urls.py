@@ -6,6 +6,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
 from product.views import *
+from order.views import *
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -26,6 +27,7 @@ router.register('comments', CommentViewSet)
 router.register('products', ProductViewSet)
 router.register('categories', CategoryViewSet)
 router.register('ratings', RatingViewSet)
+router.register('orders', OrderViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
