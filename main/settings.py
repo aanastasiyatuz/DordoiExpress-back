@@ -84,6 +84,7 @@ ROOT_URLCONF = 'main.urls'
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8000",
     "http://localhost:3000",
+    "http://34.125.134.11"
 ]
 
 TEMPLATES = [
@@ -161,8 +162,6 @@ REST_FRAMEWORK = {
     # jwt авторизация
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-            'rest_framework.authentication.SessionAuthentication',
-    'rest_framework.authentication.BasicAuthentication',
     ),
 }
 
