@@ -72,7 +72,7 @@ MIDDLEWARE = [
     # CORS Headers подключаются тут
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -100,10 +100,6 @@ CORS_ALLOW_METHODS = [
     'PATCH',
     'POST',
     'PUT',
-]
-CSRF_TRUSTED_ORIGINS = [
-    'http://34.125.134.11',
-    '34.125.134.11'
 ]
 
 TEMPLATES = [
