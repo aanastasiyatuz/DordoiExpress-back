@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'account',
     'profiles',
     'product',
-    'cart',
+    'cart_',
+'order'
 ]
 
 # доп настройки для jwt авторизации
