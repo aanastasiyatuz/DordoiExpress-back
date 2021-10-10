@@ -177,3 +177,4 @@ AUTH_USER_MODEL = 'account.MyUser'
 
 CART_SESSION_ID = 'cart'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CORS_ORIGIN_ALLOW_ALL = False
