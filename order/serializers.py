@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from cart.cart import Cart
 from .models import *
+from cart_.views import cart_detail
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -14,7 +15,11 @@ class OrderSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         cart = Cart(request)
         order = Order.objects.create(author=request.user,  **validated_data)
-        print(cart.cart.items())
-        for product in cart.cart.items():
-            order.products.append(product)
         return order
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        request = self.context.get('request')
+        products = cart_detail(request)
+        representation['products'] = products
+        return representation
