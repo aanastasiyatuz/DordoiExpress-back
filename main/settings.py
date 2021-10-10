@@ -86,10 +86,24 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://34.125.134.11"
 ]
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://localhost:3000",
     "http://34.125.134.11"
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CSRF_TRUSTED_ORIGINS = [
+    'http://34.125.134.11',
+    '34.125.134.11'
 ]
 
 TEMPLATES = [
